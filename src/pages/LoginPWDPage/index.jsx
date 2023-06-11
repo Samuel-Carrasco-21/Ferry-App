@@ -1,0 +1,69 @@
+import { AppContext } from "../../context/AppContext";
+import "../LoginPage/Login.css";
+import "./LoginPWD.css";
+import { FormularioType1 } from "../../components/Formulario/FormularioType1";
+import { QuestionType1 } from "../../components/Questions/QuestionType1";
+import { useContext } from "react";
+import { TituloApp } from "../../components/TituloApp";
+import { Logo } from "../../components/Logo";
+import { ButtonsLoginPWDPage } from "../../components/ButtonsLoginPWDPage";
+import { ModalPage } from "../ModalPage"
+import { ModalSuccess } from "../ModalPage/ModalSuccess";
+
+export const LoginPWDPage = () => {
+
+  const context = useContext(AppContext);
+
+  const handleSubmit = (evento) => {
+    evento.preventDefault();
+    if(![context.datosLoginPwdEmail,context.datosLoginPwdPwd].includes('')){
+      alert(
+        "Email: " +
+          context.datosLoginPwdEmail +
+          "\nPWD: " +
+          context.datosLoginPwdPwd
+      );
+      context.setPushedButtonIngresar(true);
+      context.setDatosLoginPwdEmail('');
+      context.setDatosLoginPwdPwd('');
+    }else{
+      alert("DEBE LLENAR LOS CAMPOS REQUERIDOS");
+    }
+  };
+
+  return (
+    <>
+      <section
+      className="flex flex-col justify-center items-center fixed top-0
+      left-0 right-0 bottom-0">
+        <TituloApp/>
+        <Logo/>
+        <FormularioType1 accion={handleSubmit}>
+        {
+          context.INSTRUCCIONES_LOGIN_PWD.map(instruction => (
+            <QuestionType1
+            key={instruction.textQuestion}
+            instruction={instruction}
+            />
+          ))
+        }
+          <ButtonsLoginPWDPage/>
+        </FormularioType1>
+      </section>
+      {
+        context.pushedButtonIngresar && (
+          <ModalPage>
+            <ModalSuccess
+            textOne="Login exitoso"
+            textTwo="Su sesión se inició correctamente"
+            actionButton={() => context.setPushedButtonIngresar(false)}
+            typeButton="button"
+            textButton="ACEPTAR"
+            navigateTo="/principal-menu"
+            />
+          </ModalPage>
+        )
+      }
+    </>
+  );
+};

@@ -16,16 +16,16 @@ export const LoginPWDPage = () => {
 
   const handleSubmit = (evento) => {
     evento.preventDefault();
-    if(![context.datosLoginPwdEmail,context.datosLoginPwdPwd].includes('')){
+    if(![context.datesLoginPwdEmail,context.datesLoginPwdPwd].includes('')){
       alert(
         "Email: " +
-          context.datosLoginPwdEmail +
+          context.datesLoginPwdEmail +
           "\nPWD: " +
-          context.datosLoginPwdPwd
+          context.datesLoginPwdPwd
       );
       context.setPushedButtonIngresar(true);
-      context.setDatosLoginPwdEmail('');
-      context.setDatosLoginPwdPwd('');
+      context.setDatesLoginPwdEmail('');
+      context.setDatesLoginPwdPwd('');
     }else{
       alert("DEBE LLENAR LOS CAMPOS REQUERIDOS");
     }
@@ -40,7 +40,7 @@ export const LoginPWDPage = () => {
         <Logo/>
         <FormularioType1 accion={handleSubmit}>
         {
-          context.INSTRUCCIONES_LOGIN_PWD.map(instruction => (
+          context.INSTRUCTIONS_LOGIN_PWD.map(instruction => (
             <QuestionType1
             key={instruction.textQuestion}
             instruction={instruction}

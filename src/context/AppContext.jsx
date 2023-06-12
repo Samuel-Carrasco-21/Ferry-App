@@ -10,64 +10,68 @@ export const AppProvider = ({ children }) => {
   const [pushedButtonIngresar, setPushedButtonIngresar] = useState(false);
   const [pushedButtonSignUp, setPushedButtonSignUp] = useState(false);
 
-  const [datosLoginPwdEmail, setDatosLoginPwdEmail] = useState("");
-  const [datosLoginPwdPwd, setDatosLoginPwdPwd] = useState("");
+  const [datesLoginPwdEmail, setDatesLoginPwdEmail] = useState("");
+  const [datesLoginPwdPwd, setDatesLoginPwdPwd] = useState("");
 
-  const[localBuscado, setLocalBuscado] = useState("");
+  const[searchedLocal, setSearchedLocal] = useState("");
 
-  const datosSingUp = useState({
+  const [datesSignUp,setDatesSignUp] = useState({
     nombre: "",
     email: "",
     password_1: "",
     password_2: "",
   });
 
-  const INSTRUCCIONES = [
+  const INSTRUCTIONS = [
     {
       enunciado: "Escriba su nombre",
       placeHolder: "nombre",
       tipoDato: (evento) => {
-        datosSingUp.nombre = evento.target.value;
+        const auxObjectIns = {...datesSignUp};
+        auxObjectIns.nombre = evento.target.value;
+        setDatesSignUp({...auxObjectIns});
       },
-      valorPregunta: datosSingUp.nombre,
+      valorPregunta: datesSignUp.nombre,
     },
     {
       enunciado: "Escriba su email",
       placeHolder: "email",
       tipoDato: (evento) => {
-        datosSingUp.email = evento.target.value;
+        const auxObjectIns = {...datesSignUp};
+        auxObjectIns.email = evento.target.value;
+        setDatesSignUp({...auxObjectIns});
       },
-      valorPregunta: datosSingUp.email,
+      valorPregunta: datesSignUp.email,
     },
     {
       enunciado: "Escriba una contraseña (8 caracteres mínimo con 2 letras)",
       placeHolder: "contraseña",
       tipoDato: (evento) => {
-        datosSingUp.password_1 = evento.target.value;
+        const auxObjectIns = {...datesSignUp};
+        auxObjectIns.password_1 = evento.target.value;
+        setDatesSignUp({...auxObjectIns});
       },
-      valorPregunta: datosSingUp.password_1,
+      valorPregunta: datesSignUp.password_1,
     },
     {
       enunciado: "Escriba nuevamente su contraseña",
       placeHolder: "contraseña",
       tipoDato: (evento) => {
-        datosSingUp.password_2 = evento.target.value;
+        const auxObjectIns = {...datesSignUp};
+        auxObjectIns.password_2 = evento.target.value;
+        setDatesSignUp({...auxObjectIns});
       },
-      valorPregunta: datosSingUp.password_2,
+      valorPregunta: datesSignUp.password_2,
     },
   ];
 
   // const writingEmailLoginPwd = (newValue) => {
-  //   setDatosLoginPwdEmail(newValue);
+  //   setdatesLoginPwdEmail(newValue);
   // };
 
   // const writingPwdLoginPwd = (newValue) => {
-  //   setDatosLoginPwdPwd(newValue);
+  //   setDatesLoginPwdPwd(newValue);
   // };
-
-  let productsList = [
-    
-  ];
 
   class InstructionsPWD{
     constructor(textQuestion,placeHolder,typeInput,actionQuestion,questionValue){
@@ -83,12 +87,12 @@ export const AppProvider = ({ children }) => {
     }
   }
 
-  const INSTRUCCIONES_LOGIN_PWD = [
+  const INSTRUCTIONS_LOGIN_PWD = [
     new InstructionsPWD("Escriba su email",
-    "email","text",setDatosLoginPwdEmail,datosLoginPwdEmail)
+    "email","text",setDatesLoginPwdEmail,datesLoginPwdEmail)
     ,
     new InstructionsPWD("Escriba su contraseña","contraseña",
-    "text",setDatosLoginPwdPwd,datosLoginPwdPwd)
+    "text",setDatesLoginPwdPwd,datesLoginPwdPwd)
   ];
 
   const Inicio = () => {
@@ -105,15 +109,15 @@ export const AppProvider = ({ children }) => {
 
   class Producto {
     constructor(
-      nombreProducto,
-      estadoProducto,
-      cantidadDisponible,
-      precioProducto
+      productName,
+      productStatus,
+      quantityAvailable,
+      productPrice
     ) {
-      this.nombreProducto = nombreProducto;
-      this.estadoProducto = estadoProducto;
-      this.cantidadDisponible = cantidadDisponible;
-      this.precioProducto = precioProducto;
+      this.productName = productName;
+      this.productStatus = productStatus;
+      this.quantityAvailable = quantityAvailable;
+      this.productPrice = productPrice;
     }
     getProducto() {
       console.table(this);
@@ -121,18 +125,18 @@ export const AppProvider = ({ children }) => {
   }
 
   class Local {
-    constructor(listaProductos, nombreLocal, estadoLocal, id) {
-      this.listaProductos = [...listaProductos];
-      this.nombreLocal = nombreLocal;
-      this.estadoLocal = estadoLocal;
+    constructor(productsList, localName, localStatus, id) {
+      this.productsList = [...productsList];
+      this.localName = localName;
+      this.localStatus = localStatus;
       this.id = id;
     }
   }
 
-  const generarListaProductos = () => {
-    const arreglo = [];
+  const generateProductsList = () => {
+    const auxArray = [];
     for (let index = 0; index < 9; index++) {
-      arreglo.push(
+      auxArray.push(
         new Producto(
           "producto - " + (index + 1),
           index % 2 === 0 ? "disponible" : "agotado",
@@ -141,29 +145,32 @@ export const AppProvider = ({ children }) => {
         )
       );
     }
-    return arreglo;
+    return auxArray;
   };
 
-  const [listaLocales,setListaLocales] = useState([]);
+  const [localsList,setLocalsList] = useState([]);
 
   const [heightFooter, setHeightFooter] = useState(0);
   const [headerMenuHeight, setHeaderMenuHeight] = useState(0);
 
   useEffect(() => {
-    if(listaLocales.length===0){
+    if(localsList.length===0){
       const auxiliarList = [];
       for (let index = 0; index < 9; index++) {
         auxiliarList.push(
           new Local(
-            generarListaProductos(),
+            generateProductsList(),
             "Local - " + (index + 1),
             index % 2 === 0,
             uuidv4()
           )
         );
       }
-      setListaLocales([...auxiliarList]);
+      setLocalsList([...auxiliarList]);
     }
+
+    
+
   },[pushedButtonIngresar]);
 
   const [widthScreen, setWidthScreen] = useState(window.innerWidth);
@@ -191,23 +198,23 @@ export const AppProvider = ({ children }) => {
         setPushedButtonIngresar,
         pushedButtonSignUp,
         setPushedButtonSignUp,
-        INSTRUCCIONES,
-        datosLoginPwdEmail,
-        setDatosLoginPwdEmail,
-        datosLoginPwdPwd,
-        setDatosLoginPwdPwd,
-        datosSingUp,
+        INSTRUCTIONS,
+        datesLoginPwdEmail,
+        setDatesLoginPwdEmail,
+        datesLoginPwdPwd,
+        setDatesLoginPwdPwd,
+        datesSignUp,
         Inicio,
         AcercaNosotros,
         Contactos,
-        listaLocales,
+        localsList,
         heightFooter,
         setHeightFooter,
         headerMenuHeight,
         setHeaderMenuHeight,
-        INSTRUCCIONES_LOGIN_PWD,
-        localBuscado,
-        setLocalBuscado,
+        INSTRUCTIONS_LOGIN_PWD,
+        searchedLocal,
+        setSearchedLocal,
         widthScreen,
         heightScreen,
         HEIGHT_MOBILE,

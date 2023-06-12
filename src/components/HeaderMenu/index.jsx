@@ -3,7 +3,6 @@ import { GiHamburgerMenu } from 'react-icons/gi'
 import { FaReact } from 'react-icons/fa'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { AppContext } from '../../context/AppContext'
-import { SelectZone } from '../SelectZone'
 export const HeaderMenu = ({clickBurgerButton,setClickBurgerButton}) => {
   
   const context = useContext(AppContext);
@@ -14,8 +13,8 @@ export const HeaderMenu = ({clickBurgerButton,setClickBurgerButton}) => {
 
   const searchValue = (evento) => {
     evento.preventDefault();
-    const nuevoValor = evento.target.value;
-    context.setLocalBuscado(nuevoValor.toLowerCase());
+    const newValue = evento.target.value;
+    context.setSearchedLocal(newValue.toLowerCase());
   };
 
   useEffect(() => {

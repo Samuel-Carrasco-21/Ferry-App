@@ -8,16 +8,16 @@ export const LocalMenuPage = () => {
   return (
     <>
     <ListCards>
-      {context.listaLocales
+      {context.localsList
       .filter(local => 
-        local.nombreLocal.toLowerCase().includes(context.localBuscado))
+        local.localName.toLowerCase().includes(context.searchedLocal))
       .map(local =>
         (
           <LocalCard
-          nombreLocal = {local.nombreLocal}
-          estadoLocal = {local.estadoLocal ? "abierto" : "cerrado"}
-          textoBotonUno = "Productos"
-          textoBotonDos = "Ubicacion"
+          localName = {local.localName}
+          localStatus = {local.localStatus ? "abierto" : "cerrado"}
+          buttonTextOne = "Productos"
+          buttonTextTwo = "Ubicacion"
           key = {local.id}
           />
         )

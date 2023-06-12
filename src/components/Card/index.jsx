@@ -1,9 +1,9 @@
 import { Logo } from '../Logo';
 
-export const Card = (props) => {
+export const Card = ({nameItemList,children}) => {
 
-  const nombreItemList = props.nombreItemList;
-  const children = props.children;
+  // const nameItemList = props.nameItemList;
+  // const children = props.children;
 
   return (
     <section className="inline-block p-2 text-white border-orange-600
@@ -11,7 +11,7 @@ export const Card = (props) => {
     mt-local-card t-local-card l-local-card ll-local-card lll-local-card
     max-w-max bg-card-blue">
       <h1 className='font-bold'>
-        {nombreItemList}
+        {nameItemList}
       </h1>
       <Logo/>
       <div className="flex flex-row items-center pt-0 text-card-m text-card-ml

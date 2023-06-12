@@ -1,45 +1,42 @@
-import { useState, useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { Card } from "../Card";
 import { LocalState } from "../LocalState";
 import { ButtonType1 } from '../Buttons/ButtonType1'
-export const LocalCard = ({nombreLocal,textoBotonUno,textoBotonDos,
-  estadoLocal}) => {
+import { AppContext } from "../../context/AppContext";
+export const LocalCard = ({localName,buttonTextOne,buttonTextTwo,
+  localStatus}) => {
 
-  const [width, setWidth] = useState(window.innerWidth);
-
-  const handleResize = () => {
-    setWidth(window.innerWidth);
-  };
+  const context = useContext(AppContext);
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", context.handleResize);
   },[window.innerWidth]);
 
-  const ingresarLocal = () => {
+  const getIntoLocal = () => {
     alert("INGRESANDO LOCAL");
   };
   
-  const obtenerUbicacionLocal = () => {
+  const getLocalLocation = () => {
     alert("OBTENIENDO UBICACION");
   };
 
   return (
     <Card
-    nombreItemList={nombreLocal}
+    nameItemList={localName}
     >
       <LocalState
-      width={width}
-      estadoLocal={estadoLocal}
+      width={context.widthScreen}
+      localStatus={localStatus}
       />
       <ButtonType1
-      textButton={textoBotonUno}
+      textButton={buttonTextOne}
       typeButton="button"
-      actionButton={ingresarLocal}
+      actionButton={getIntoLocal}
       />
       <ButtonType1
-      textButton={textoBotonDos}
+      textButton={buttonTextTwo}
       typeButton="button"
-      actionButton={obtenerUbicacionLocal}
+      actionButton={getLocalLocation}
       />
     </Card>
   );

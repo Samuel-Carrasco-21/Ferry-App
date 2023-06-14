@@ -15,11 +15,11 @@ const cors = require("cors");
 app.use(cors());
 
 app.use(bodyParser.json());
-app.use(express.json());
+// app.use(express.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 router(app);
 
-app.listen(3000);
+app.listen(5000);
 
-console.log('La aplicacion esta escuchando en http://localhost:3000');
+console.log('La aplicacion esta escuchando en http://localhost:5000');

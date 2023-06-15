@@ -2,7 +2,9 @@ const store = require('./store');
 
 function addLocal(local){
   return new Promise((resolve,reject) => {
-    if(!local){
+    if(!local._id ||
+      (!local.products_list || local.products_list.length===0) ||
+      !local.local_name || !local.local_status){
       console.error("NO ES POSIBLE AGREGAR AL LOCAL");
       reject('Datos incorrectos');
       return false;

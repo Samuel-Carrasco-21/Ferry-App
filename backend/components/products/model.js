@@ -4,10 +4,6 @@ const Schema = mongoose.Schema;
 
 const myProduct = new Schema({
   _id:Number,
-  _local:{
-    type:Number,
-    ref:"Local"
-  },
   product_name:String,
   product_status:String,
   quantity_available:Number,

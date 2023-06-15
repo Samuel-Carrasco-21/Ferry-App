@@ -13,9 +13,9 @@ router.get('/',(req,res) => {
 });
 
 router.post('/',(req,res) => {
-  const {products_list,local_name,local_status} = req.body;
+  const {_id,products_list,local_name,local_status} = req.body;
 
-  controller.addUser({products_list,local_name,local_status,local_logo})
+  controller.addUser({_id,products_list,local_name,local_status,local_logo})
     .then((fullMessage) => {
       response.success(req,res,fullMessage,201);
     }).catch(findedError => {

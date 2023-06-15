@@ -11,7 +11,6 @@ async function getUsers(searchUserEmail){
     filter = {user_email:searchUserEmail};
   }
   const usuarios = await Model.find(filter);
-  // console.log('users: ',usuarios);
   return usuarios;
 };
 

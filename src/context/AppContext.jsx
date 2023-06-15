@@ -9,6 +9,7 @@ export const AppProvider = ({ children }) => {
   const [pushedButtonLogin, setPushedButtonLogin] = useState(false);
   const [pushedButtonIngresar, setPushedButtonIngresar] = useState(false);
   const [pushedButtonSignUp, setPushedButtonSignUp] = useState(false);
+  const [pushedButtonProduct, setPushedButtonProduct] = useState(false);
 
   const [datesLoginPwdEmail, setDatesLoginPwdEmail] = useState("");
   const [datesLoginPwdPwd, setDatesLoginPwdPwd] = useState("");
@@ -119,9 +120,6 @@ export const AppProvider = ({ children }) => {
       this.quantityAvailable = quantityAvailable;
       this.productPrice = productPrice;
     }
-    getProducto() {
-      console.table(this);
-    }
   }
 
   class Local {
@@ -198,6 +196,8 @@ export const AppProvider = ({ children }) => {
         setPushedButtonIngresar,
         pushedButtonSignUp,
         setPushedButtonSignUp,
+        pushedButtonProduct,
+        setPushedButtonProduct,
         INSTRUCTIONS,
         datesLoginPwdEmail,
         setDatesLoginPwdEmail,

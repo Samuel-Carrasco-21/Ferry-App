@@ -1,15 +1,18 @@
 // import reactLogo from '../assets/react.svg'
 // import viteLogo from '../../public/vite.svg'
-import { BrowserRouter, RouterProvider, createBrowserRouter, useRoutes } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.css'
 import { PrincipalMenuPage } from '../pages/PrincipalMenuPage'
 import { LoginPage } from '../pages/LoginPage'
 import { LoginPWDPage } from '../pages/LoginPWDPage'
 import { LoginSignUpPage } from '../pages/LoginSignUpPage'
 import { LocalMenuPage } from '../pages/LocalMenuPage'
+import { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
+import { LocalProductsPage } from '../pages/LocalProductsPage';
 
 function App() {
-  // const [count, setCount] = useState(0)
+  const context = useContext(AppContext);
   const routes = createBrowserRouter([
     {
       path: '/',
@@ -28,8 +31,12 @@ function App() {
       element: <PrincipalMenuPage/>,
       children: [
         {
-          path: 'local-list-menu',
-          element: <LocalMenuPage/>
+          path: 'principal-menu',
+          element: <LocalMenuPage/>,
+          children: {
+            path: `${}`,
+            element: <LocalProductsPage/>
+          }
         }
       ]
     },

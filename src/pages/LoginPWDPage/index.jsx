@@ -9,28 +9,18 @@ import { Logo } from "../../components/Logo";
 import { ButtonsLoginPWDPage } from "../../components/ButtonsLoginPWDPage";
 import { ModalPage } from "../ModalPage"
 import { ModalSuccess } from "../ModalPage/ModalSuccess";
-import { ferryTechUri } from "../../services/ferryTechUri";
+import { setUser } from "../../services/ferryServices";
 
 export const LoginPWDPage = () => {
   // const API = ferryTechUri;
   const context = useContext(AppContext);
 
-  const getUsers = async (directionDB,userName,userPassword) => {
-    const result = 0;
-    return result;
-  };
-
   const handleSubmit = (evento) => {
     evento.preventDefault();
     if(![context.datesLoginPwdEmail,context.datesLoginPwdPwd].includes('')){
-      // alert(
-      //   "Email: " +
-      //     context.datesLoginPwdEmail +
-      //     "\nPWD: " +
-      //     context.datesLoginPwdPwd
-      // );
-      console.log(getUsers
-        ('users',context.datesLoginPwdEmail,context.datesLoginPwdPwd));
+
+      setUser({user_name:'hola mundo',user_email:'jack',user_password:'12345'});
+      
       context.setPushedButtonIngresar(true);
       context.setDatesLoginPwdEmail('');
       context.setDatesLoginPwdPwd('');

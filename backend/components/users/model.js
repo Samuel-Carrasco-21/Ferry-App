@@ -9,6 +9,6 @@ const myUser = new Schema({
   creation_date:Date
 });
 
-const model = mongoose.model('Users',myUser);
+const model = mongoose.model('User',myUser);
 
 module.exports = model;

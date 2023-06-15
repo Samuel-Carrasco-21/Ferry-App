@@ -3,7 +3,7 @@ const store = require('./store');
 function addUser(user){
   return new Promise((resolve,reject) => {
     if(!user){
-      console.error("NO ES POSIBLE CREAR EL OBJETO");
+      console.error("NO ES POSIBLE AGREGAR AL USUARIO");
       reject('Datos incorrectos');
       return false;
     }

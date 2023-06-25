@@ -3,16 +3,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const myLocal = new Schema({
-  _id:Number,
-  products_list:[
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Product",
-    }
-  ],
-  local_name:String,
-  local_status:Boolean,
-  local_logo:String
+  productsList:[Schema.Types.Mixed],
+  localName:String,
+  localStatus:Boolean,
+  localLogo:String,
+	localLocation:String
 });
 
 const model = mongoose.model('Local',myLocal);

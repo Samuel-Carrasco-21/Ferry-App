@@ -1,10 +1,11 @@
-import { useEffect, useContext  } from "react";
+import { useEffect, useContext, memo  } from "react";
 import { LocalState } from '../LocalState';
 import { AppContext } from "../../context/AppContext";
 import { ButtonType1 } from "../Buttons/ButtonType1";
+import { Card } from "../Card";
 
-export const ProductCard = ({product,setProductChecked}) => {
-  const {productName,productState} = product;
+export const ProductCard = memo(({product,setProductChecked}) => {
+  const {productName,productStatus,productLogo} = product;
   const context = useContext(AppContext);
 
   const clickedButton = () => {
@@ -18,17 +19,23 @@ export const ProductCard = ({product,setProductChecked}) => {
 
   return (
   <Card
-  nombreItemlist={productName}
+  nameItemList={productName}
+  urlImg={productLogo}
+  typeCard={"product"}
   >
     <LocalState
-    width={context.widthScreen}
-    estadoLocal={productState}
+    typeStatus={"product"}
+    localStatus={productStatus}
     />
     <ButtonType1
     textButton='descripción'
     typeButton="button"
-    actionButton={() => clickedButton}
+    actionButton={clickedButton}
     />
   </Card>
   );
-};
+},(prevProps, nextProps) => {
+  return (
+    prevProps.product.productStatus === nextProps.product.productStatus
+  );
+});

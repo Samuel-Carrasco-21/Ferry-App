@@ -1,10 +1,9 @@
-export const ButtonType2 = (props) => {
-  const texto = props.texto;
-  const accion = props.accion;
-  const margin = props.margin;
-  const classStyle = 'bg-transparent text-lg '+margin;
+export const ButtonType2 = ({texto,accion}) => {
   return (
-    <button className={classStyle} onClick={accion}>
+    <button
+    className='bg-transparent text-base ml-3 font-sans p-0.5 rounded-lg pt-0
+    ease-in-out duration-300 active:text-secondary-one hover:text-secondary-two'
+    onClick={accion}>
       {texto}
     </button>
   )

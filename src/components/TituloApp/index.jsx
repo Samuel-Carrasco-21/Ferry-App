@@ -2,7 +2,7 @@ export const TituloApp = () => {
   return (
     <h1
     className="
-    text-white
+    text-gray-900
     text-4xl
     font-bold
     "

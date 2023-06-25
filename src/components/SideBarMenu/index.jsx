@@ -1,11 +1,14 @@
 import { AppContext } from '../../context/AppContext';
 import { useEffect,useContext } from "react";
 import { SelectZone } from '../SelectZone';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { LogOut } from '../LogOut';
 
-export const SideBarMenu = ({clickBurgerButton}) => {
+export const SideBarMenu = ({clickBurgerButton,typeBar}) => {
 
   const context = useContext(AppContext);
+
+  const {pathname} = useLocation();
 
   const WIDTH = context.widthScreen;
 
@@ -19,41 +22,33 @@ export const SideBarMenu = ({clickBurgerButton}) => {
   },[window.innerWidth]);
 
   return (
-
-    // <section className='relative'>
-    //   <section
-    //   className='w-max flex flex-col shadow-lg absolute z-10
-    //   h-full bg-white'
-    //   style={context.MAIN_CONTENT_HEIGHT}>
-    //     <SelectZone/>
-    //     <Link className='font-semibold p-1 m-1'
-    //     to={`/principal-menu/local-list-menu`}>
-    //       Locales
-    //     </Link>
-    //   </section>
-    // </section>
-
-    // <div
-    //   className={`top-0 right-0 w-[35px] bg-blue-600 p-10 pl-20
-    //   text-white fixed h-full z-40  ease-in-out duration-1000 ${
-    //     clickBurgerButton ? "translate-x-0 " : "translate-x-full"
-    //   }`}
-    // >
-    //   <h3 className="mt-20 text-4xl font-semibold text-white">I am a sidebar</h3>
-    // </div>
-
     <section
-      className={`w-max bg-blue-600 p-10 fixed h-full z-40 ease-linear duration-300 ${
-        clickBurgerButton ? "translate-x-0" : "-translate-x-52"
-      }`}
+      className={`w-max bg-secondary-one fixed h-full z-40 ease-linear
+      duration-300
+      ${clickBurgerButton ? "translate-x-0" : "-translate-x-60"}`}
       style={context.MAIN_CONTENT_HEIGHT}
     >
       <section className='flex flex-col justify-center items-center'>
-        <Link className='font-semibold p-1 m-1 mb-5 uppercase text-white'
-          to={`/principal-menu/local-list-menu`}>
-            Locales
-        </Link>
-        <SelectZone/>
+        <LogOut/>
+        <h1 className='font-semibold p-1 m-1 mb-5 uppercase text-white
+        text-xl mt-3 w-56 text-center'>
+          {pathname==="/principal-menu/local-list-menu" ?
+          "Locales" : "Productos"}
+        </h1>
+        <SelectZone typeBar={typeBar}/>
+        {
+          pathname!=="/principal-menu/local-list-menu" && (
+            <Link className='w-56 h-14 hover:bg-secondary-three
+            active:bg-secondary-two text-center flex flex-row
+            justify-center items-center mt-3'
+            to={"/principal-menu/local-list-menu"}>
+              <p className='text-white text-lg font-semibold mr-5
+              uppercase'>
+                Volver
+              </p>
+            </Link>
+          )
+        }
       </section>
     </section>
   );

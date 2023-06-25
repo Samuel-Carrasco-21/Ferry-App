@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 
 const myProduct = new Schema({
   _id:Number,
-  product_name:String,
-  product_status:String,
-  quantity_available:Number,
-  product_price:Number,
-  product_logo:String
+  productName:String,
+  productStatus:Boolean,
+  quantityAvailable:Number,
+  productPrice:Number,
+  productLogo:String
 });
 
 const model = mongoose.model('Product',myProduct);

@@ -3,6 +3,8 @@ import { GiHamburgerMenu } from 'react-icons/gi'
 import { FaReact } from 'react-icons/fa'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { AppContext } from '../../context/AppContext'
+import { Logo } from '../Logo'
+import { useNavigate } from 'react-router-dom'
 export const HeaderMenu = ({clickBurgerButton,setClickBurgerButton}) => {
   
   const context = useContext(AppContext);
@@ -21,37 +23,30 @@ export const HeaderMenu = ({clickBurgerButton,setClickBurgerButton}) => {
     if(!headerMenuSize.current?.clientHeight){
       return ;
     }
-    context.setHeaderMenuHeight(headerMenuSize?.current?.clientHeight);
-  },[headerMenuSize?.current?.clientHeight]);
+    context.setHeaderMenuHeight(headerMenuSize.current?.clientHeight);
+  },[headerMenuSize.current?.clientHeight]);
 
   return (
-    <div className='
-    flex
-    flex-row
-    w-screen
-    justify-around
-    bg-orange-400
-    items-center
-    p-3
-    '
+    <div className='flex flex-row w-screen justify-around bg-primary
+    items-center p-3'
     ref={headerMenuSize}
     >
-      {/* <Link to={`local-list-menu`}>
-      </Link> */}
-      <button className='p-2 bg-transparent border-2
-      border-white rounded-full text-lg text-white w-max'
+      <button className='p-2 hover:bg-purple-500 active:bg-purple-600
+      rounded-full text-lg text-white w-max ease-in-out duration-300 mr-2'
       onClick={() => setClickBurgerButton(!clickBurgerButton)}
       >
-        <GiHamburgerMenu/>
+        <GiHamburgerMenu />
       </button>
       
       <input placeholder='search' className='w-4/5 rounded-lg p-2
       outline-none shadow-lg'
       onChange={searchValue}
       />
-      <figure className='text-white'>
-        <FaReact size={'2rem'}/>
-      </figure>        
+
+      <Logo
+      urlImg={context.LOGO_APP}
+      widthLogo={"small"}
+      />      
     </div>
   )
 }

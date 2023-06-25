@@ -1,5 +1,4 @@
-import { useEffect, createContext, useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
+import { createContext, useState } from "react";
 
 export const AppContext = createContext();
 
@@ -7,9 +6,12 @@ export const AppProvider = ({ children }) => {
   const saludo = (message) => alert(message);
 
   const [pushedButtonLogin, setPushedButtonLogin] = useState(false);
+  const [pushedButtonLoginPwd, setPushedButtonLoginPwd] = useState(false);
   const [pushedButtonIngresar, setPushedButtonIngresar] = useState(false);
   const [pushedButtonSignUp, setPushedButtonSignUp] = useState(false);
   const [pushedButtonProduct, setPushedButtonProduct] = useState(false);
+  
+  const [changeToLocal,setChangeToLocal] = useState("");
 
   const [datesLoginPwdEmail, setDatesLoginPwdEmail] = useState("");
   const [datesLoginPwdPwd, setDatesLoginPwdPwd] = useState("");
@@ -17,7 +19,7 @@ export const AppProvider = ({ children }) => {
   const[searchedLocal, setSearchedLocal] = useState("");
 
   const [datesSignUp,setDatesSignUp] = useState({
-    nombre: "",
+    name: "",
     email: "",
     password_1: "",
     password_2: "",
@@ -25,54 +27,50 @@ export const AppProvider = ({ children }) => {
 
   const INSTRUCTIONS = [
     {
-      enunciado: "Escriba su nombre",
+      textQuestion: "Escriba su nombre",
       placeHolder: "nombre",
-      tipoDato: (evento) => {
+      actionQuestion: (valor) => {
         const auxObjectIns = {...datesSignUp};
-        auxObjectIns.nombre = evento.target.value;
+        auxObjectIns.name = valor;
         setDatesSignUp({...auxObjectIns});
       },
-      valorPregunta: datesSignUp.nombre,
+      questionValue: datesSignUp.name,
+      typeInput: "text"
     },
     {
-      enunciado: "Escriba su email",
+      textQuestion: "Escriba su email",
       placeHolder: "email",
-      tipoDato: (evento) => {
+      actionQuestion: (valor) => {
         const auxObjectIns = {...datesSignUp};
-        auxObjectIns.email = evento.target.value;
+        auxObjectIns.email = valor;
         setDatesSignUp({...auxObjectIns});
       },
-      valorPregunta: datesSignUp.email,
+      questionValue: datesSignUp.email,
+      typeInput: "text"
     },
     {
-      enunciado: "Escriba una contraseña (8 caracteres mínimo con 2 letras)",
+      textQuestion: "Escriba una contraseña",
       placeHolder: "contraseña",
-      tipoDato: (evento) => {
+      actionQuestion: (valor) => {
         const auxObjectIns = {...datesSignUp};
-        auxObjectIns.password_1 = evento.target.value;
+        auxObjectIns.password_1 = valor;
         setDatesSignUp({...auxObjectIns});
       },
-      valorPregunta: datesSignUp.password_1,
+      questionValue: datesSignUp.password_1,
+      typeInput: "password"
     },
     {
-      enunciado: "Escriba nuevamente su contraseña",
+      textQuestion: "Escriba nuevamente su contraseña",
       placeHolder: "contraseña",
-      tipoDato: (evento) => {
+      actionQuestion: (valor) => {
         const auxObjectIns = {...datesSignUp};
-        auxObjectIns.password_2 = evento.target.value;
+        auxObjectIns.password_2 = valor;
         setDatesSignUp({...auxObjectIns});
       },
-      valorPregunta: datesSignUp.password_2,
+      questionValue: datesSignUp.password_2,
+      typeInput: "password"
     },
   ];
-
-  // const writingEmailLoginPwd = (newValue) => {
-  //   setdatesLoginPwdEmail(newValue);
-  // };
-
-  // const writingPwdLoginPwd = (newValue) => {
-  //   setDatesLoginPwdPwd(newValue);
-  // };
 
   class InstructionsPWD{
     constructor(textQuestion,placeHolder,typeInput,actionQuestion,questionValue){
@@ -82,10 +80,6 @@ export const AppProvider = ({ children }) => {
       this.actionQuestion = actionQuestion;
       this.questionValue = questionValue;
     }
-
-    runAction(newValue){
-      this.actionQuestion(newValue);
-    }
   }
 
   const INSTRUCTIONS_LOGIN_PWD = [
@@ -93,7 +87,7 @@ export const AppProvider = ({ children }) => {
     "email","text",setDatesLoginPwdEmail,datesLoginPwdEmail)
     ,
     new InstructionsPWD("Escriba su contraseña","contraseña",
-    "text",setDatesLoginPwdPwd,datesLoginPwdPwd)
+    "password",setDatesLoginPwdPwd,datesLoginPwdPwd)
   ];
 
   const Inicio = () => {
@@ -108,96 +102,45 @@ export const AppProvider = ({ children }) => {
     alert("CONTACTOS");
   };
 
-  class Producto {
-    constructor(
-      productName,
-      productStatus,
-      quantityAvailable,
-      productPrice
-    ) {
-      this.productName = productName;
-      this.productStatus = productStatus;
-      this.quantityAvailable = quantityAvailable;
-      this.productPrice = productPrice;
-    }
-  }
-
-  class Local {
-    constructor(productsList, localName, localStatus, id) {
-      this.productsList = [...productsList];
-      this.localName = localName;
-      this.localStatus = localStatus;
-      this.id = id;
-    }
-  }
-
-  const generateProductsList = () => {
-    const auxArray = [];
-    for (let index = 0; index < 9; index++) {
-      auxArray.push(
-        new Producto(
-          "producto - " + (index + 1),
-          index % 2 === 0 ? "disponible" : "agotado",
-          Math.floor(Math.random() * 100),
-          Math.floor(Math.random() * 50)
-        )
-      );
-    }
-    return auxArray;
-  };
+  const LOGO_APP = "https://images.pexels.com/photos/209235/pexels-photo-209235.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2";
 
   const [localsList,setLocalsList] = useState([]);
+  const [localStore,setLocalStore] = useState([]);
+  const [actualLocalStore,setActualLocalStore] = useState([]);
+  const [originalLocalList,setOriginalLocalList] = useState([]);
 
   const [heightFooter, setHeightFooter] = useState(0);
   const [headerMenuHeight, setHeaderMenuHeight] = useState(0);
 
-  useEffect(() => {
-    if(localsList.length===0){
-      const auxiliarList = [];
-      for (let index = 0; index < 9; index++) {
-        auxiliarList.push(
-          new Local(
-            generateProductsList(),
-            "Local - " + (index + 1),
-            index % 2 === 0,
-            uuidv4()
-          )
-        );
-      }
-      setLocalsList([...auxiliarList]);
-    }
-
-    
-
-  },[pushedButtonIngresar]);
-
   const [widthScreen, setWidthScreen] = useState(window.innerWidth);
   const [heightScreen, setHeightScreen] = useState(window.innerHeight);
   
-  const HEIGHT_MOBILE = heightScreen*0.20;
-  const HEIGHT_DESKTOP = heightScreen*0.25;
+  const TOTAL_HEIGHT = heightScreen*0.25;
 
   const handleResize = () => {
     setWidthScreen(window.innerWidth);
     setHeightScreen(window.innerHeight);
   };
 
-  const MAIN_CONTENT_HEIGHT = {height: (widthScreen>=800 ?
-    heightScreen-heightScreen*0.25 :
-    heightScreen-heightScreen*0.20)};
+  const MAIN_CONTENT_HEIGHT = {height:heightScreen-heightScreen*0.25};
 
   return (
     <AppContext.Provider
       value={{
+        LOGO_APP,
         saludo,
         pushedButtonLogin,
         setPushedButtonLogin,
         pushedButtonIngresar,
         setPushedButtonIngresar,
+        pushedButtonLoginPwd,
+        setPushedButtonLoginPwd,
         pushedButtonSignUp,
         setPushedButtonSignUp,
         pushedButtonProduct,
         setPushedButtonProduct,
+        changeToLocal,
+        setChangeToLocal,
         INSTRUCTIONS,
         datesLoginPwdEmail,
         setDatesLoginPwdEmail,
@@ -208,6 +151,13 @@ export const AppProvider = ({ children }) => {
         AcercaNosotros,
         Contactos,
         localsList,
+        setLocalsList,
+        originalLocalList,
+        setOriginalLocalList,
+        localStore,
+        setLocalStore,
+        actualLocalStore,
+        setActualLocalStore,
         heightFooter,
         setHeightFooter,
         headerMenuHeight,
@@ -217,8 +167,7 @@ export const AppProvider = ({ children }) => {
         setSearchedLocal,
         widthScreen,
         heightScreen,
-        HEIGHT_MOBILE,
-        HEIGHT_DESKTOP,
+        TOTAL_HEIGHT,
         handleResize,
         MAIN_CONTENT_HEIGHT
       }}

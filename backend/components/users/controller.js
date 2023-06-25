@@ -10,7 +10,7 @@ function addUser(user){
 
     const newUser = {
       ...user,
-      creation_date: Date()
+      creationDate: Date()
     };
     store.add(newUser);
 

@@ -13,9 +13,9 @@ router.get('/',(req,res) => {
 });
 
 router.post('/',(req,res) => {
-  const {product_name,product_status,quantity_available,product_price}
+  const {productName,productStatus,quantityAvailable,productPrice}
   = req.body;
-  controller.addUser({product_name,product_status,quantity_available,product_price})
+  controller.addUser({productName,productStatus,quantityAvailable,productPrice})
     .then((fullMessage) => {
       response.success(req,res,fullMessage,201);
     }).catch(findedError => {

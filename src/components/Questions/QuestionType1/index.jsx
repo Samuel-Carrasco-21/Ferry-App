@@ -1,4 +1,6 @@
-export const QuestionType1 = ({instruction}) => {
+import { GiHoleLadder } from "react-icons/gi";
+
+export const QuestionType1 = ({instruction,action}) => {
   const textQuestion =
   instruction.textQuestion;
   const placeHolder =
@@ -18,7 +20,7 @@ export const QuestionType1 = ({instruction}) => {
         type={typeInput}
         value={questionValue}
         onChange={(event) =>
-          instruction.runAction(event.target.value)}
+        action(event.target.value)}
       />
     </>
   );

@@ -1,76 +1,130 @@
-import React from "react";
+import React, { useState } from "react";
 import { AppContext } from "../../context/AppContext";
-import '../LoginPage/Login.css';
-import './LoginSingUp.css';
-import '../LoginPWDPage/LoginPWD.css';
+import "./LoginSingUp.css";
+import "../LoginPWDPage/LoginPWD.css";
 import { FormularioType1 } from "../../components/Formulario/FormularioType1";
 import { QuestionType1 } from "../../components/Questions/QuestionType1";
 import { useContext } from "react";
+import { getUser, setUser } from "../../services/ferryServices";
+import { ModalPage } from "../ModalPage";
+import { ModalMessage } from "../ModalPage/ModalMessage";
+import { QuestionType2 } from "../../components/Questions/QuestionType2";
+import { Link } from "react-router-dom";
+import { ButtonType1 } from "../../components/Buttons/ButtonType1";
 
 export const LoginSignUpPage = () => {
+  const context = useContext(AppContext);
 
-    const context = useContext(AppContext);
+  const [errorFinded, setErrorFinded] = useState(
+    {estado:false,tipo:''}
+  );
+  const [userCreated, setUserCreated] = useState(false);
 
-    const handleSubmit = (evento) => {
-        evento.preventDefault();
-        alert("nombre: "+context.datosSingUp.nombre+
-            "\nemail: "+context.datosSingUp.email+
-            "\npassword_1: "+context.datosSingUp.password_1+
-            "\npassword_2: "+context.datosSingUp.password_2);
-    };
+  const handleSubmit = async (evento) => {
+    evento.preventDefault();
+    const emailVerificator = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordVerificator =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z0-9]{8,}$/;
 
-    return (
-        <section className="
-        flex
-        flex-col
-        justify-center
-        items-center
-        fixed
-        -top-1
-        -left-1
-        -right-1
-        -bottom-1
-        ">
-            <h1 className="
-            text-white
-            text-3xl
-            font-bold
-            ">
-                Ingrese sus datos
-            </h1>
+    const oldEmail = await getUser(context.datesSignUp.email);
 
-            <FormularioType1
-            accion={handleSubmit}
-            >
-                {context.INSTRUCCIONES.map(elemento => (
-                    <QuestionType1
-                    enunciado={elemento.enunciado}
-                    placeholder={elemento.placeHolder}
-                    type={"text"}
-                    accion={elemento.tipoDato}
-                    valorPregunta={elemento.valorPregunta}
-                    />
-                ))}
+    if (emailVerificator.test(context.datesSignUp.email) && oldEmail === null) {
+      if (passwordVerificator.test(context.datesSignUp.password_1)) {
+        if (context.datesSignUp.password_1 === context.datesSignUp.password_2) {
+          setUser({
+          userName: context.datesSignUp.name,
+          userEmail: context.datesSignUp.email,
+          userPassword: context.datesSignUp.password_1,
+          });
+          setErrorFinded({...errorFinded,estado:false});
+          setUserCreated(true);
+        }else {
+          setErrorFinded({estado:true,tipo:"equal-password"});
+        }
+      }else {
+        setErrorFinded({estado:true,tipo:"password"});
+      }
+    }else{
+      setErrorFinded({estado:true,tipo:"email"});
+    }
+  };
 
-                <input
-                type="submit"
-                className="
-                text-white
-                h-12
-                w-48
-                rounded-lg
-                mt-4
-                mb-4
-                font-bold
-                bg-orange-600
-                hover:bg-orange-500
-                active:bg-orange-700
-                self-center
-                "
-                value="crear cuenta"
-                />
-            </FormularioType1>
+  return (
+    <section className="flex justify-center items-center fixed top-0 left-0
+    right-0 bottom-0 bg-primary">
+      { 
+        (errorFinded.estado || userCreated) &&
+        (
+          <ModalPage>
+          {errorFinded.estado ? (
+            <ModalMessage
+            textOne={"ERROR"}
+            textTwo={errorFinded.tipo==="email" ?
+            "Direccion de Email Invalida" :
+            errorFinded.tipo==="password" ?
+            "La contraseña debe tener al menos 1 minúscula, 1 mayúscula, 1 número, y debe tener una extensión de 8 caracteres" :
+            "Las contraseñas no son iguales"
+            }
+            actionButton={() => setErrorFinded({...errorFinded,estado:false})}
+            typeButton={"button"}
+            textButton={"ACEPTAR"}
+            navigateTo={'/login-sign-up'}
+            />
+          ) : (
+            <ModalMessage
+            textOne={"USUARIO CREADO"}
+            textTwo={"El usuario fue creado exitosamente"}
+            actionButton={() => setUserCreated(true)}
+            typeButton={"button"}
+            textButton={"ACEPTAR"}
+            navigateTo={'/login'}
+            />
+          )
+          }
+          </ModalPage>
+        )
+        
+      }
+      <section
+      className="flex justify-center items-center fixed
+      top-0 left-0 right-0 bottom-0"
+      >
+        <section
+        className="flex flex-col justify-center items-center
+        w-max"
+        >
+          <FormularioType1 accion={handleSubmit}>
+          <h1 className="text-gray-900 text-3xl font-bold">
+            Ingrese sus datos
+          </h1>
+          <div className="flex flex-col items-start">
+            {context.INSTRUCTIONS.map((element) => (
+              <QuestionType2
+              instruction={element}
+              key={element.textQuestion}
+              />
+            ))}
+          </div>
+          <div className="flex flex-row items-center">
+            <input
+              type="submit"
+              className="text-white h-12 w-36 rounded-lg mt-4 mb-4
+                font-bold bg-secondary-two hover:bg-secondary-three
+                active:bg-secondary-one self-center ease-in-out
+                duration-300 uppercase"
+              value="crear cuenta"
+            />
+            <Link to={"/login"}>
+              <ButtonType1
+              actionButton={()=>{}}
+              textButton={"volver"}
+              typeButton={"button"}
+              />
+            </Link>
+          </div>
+          </FormularioType1>
         </section>
-    );
-
-}
+      </section>
+    </section>
+  );
+};

@@ -2,6 +2,7 @@
 export default {
   content: [
     "./src/**/*.{html,jsx}",
+    "./node_modules/flowbite/**/*.js",
   ],
   theme: {
     extend: {
@@ -15,13 +16,22 @@ export default {
         'll-card': '500px',
         'lll-card': 'auto',
       },
-      height: {
-        'card-list': '245px'
-      },
       backgroundColor:{
-        'card-blue': '#0940AD'
+        'card-blue': '#0940AD',
+        'primary': '#5800FF',
+        'secondary-one': '#0096FF',
+        'secondary-two': '#00D7FF',
+        'secondary-three': '#72FFFF',
+        'secondary-p-1' : '#6A19FF',
+        'secondary-p-2' : '#3E00B3'
+      },
+      textColor:{
+        'secondary-one': '#0096FF',
+        'secondary-two': '#00D7FF'
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin')
+  ],
 }

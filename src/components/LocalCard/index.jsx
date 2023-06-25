@@ -1,44 +1,54 @@
-import { useEffect, useContext } from "react";
+import { useContext, memo } from "react";
 import { Card } from "../Card";
 import { LocalState } from "../LocalState";
 import { ButtonType1 } from '../Buttons/ButtonType1';
 import { AppContext } from "../../context/AppContext";
-export const LocalCard = ({localName,buttonTextOne,buttonTextTwo,
-  localStatus}) => {
+import { Link } from "react-router-dom";
+export const LocalCard = memo(({buttonTextOne,localGotten}) => {
+  const {localName,localStatus,localLogo,_id,productsList,localLocation}
+  = localGotten;
 
   const context = useContext(AppContext);
 
-  useEffect(() => {
-    window.addEventListener("resize", context.handleResize);
-  },[window.innerWidth]);
-
   const getIntoLocal = () => {
-    alert("INGRESANDO LOCAL");
-  };
-  
-  const getLocalLocation = () => {
-    alert("OBTENIENDO UBICACION");
+    if(productsList!==undefined){
+      context.setActualLocalStore(productsList);
+      context.setLocalStore(productsList);
+    }else{
+      context.setActualLocalStore([]);
+      context.setLocalStore([]);
+    }
+    context.setChangeToLocal(localName);
   };
 
   return (
     <Card
     nameItemList={localName}
-    urlImg={''}
+    urlImg={localLogo}
     >
       <LocalState
-      width={context.widthScreen}
+      typeStatus={"local"}
       localStatus={localStatus}
       />
-      <ButtonType1
-      textButton={buttonTextOne}
-      typeButton="button"
-      actionButton={getIntoLocal}
-      />
-      <ButtonType1
-      textButton={buttonTextTwo}
-      typeButton="button"
-      actionButton={getLocalLocation}
-      />
+      <Link className="w-[100%] right-1 relative" to={`${_id}`}>
+        <ButtonType1
+        textButton={buttonTextOne}
+        typeButton="button"
+        actionButton={getIntoLocal}
+        />
+      </Link>
+      <a
+      className="text-white h-12 w-[100%] rounded-lg mt-2 mb-2 font-bold
+      bg-secondary-two hover:bg-secondary-three active:bg-secondary-one
+      m-1 ease-in-out duration-300 flex justify-center items-center uppercase
+      text-sm"
+      href={localLocation}>
+        ubicación
+      </a>
     </Card>
   );
-};
+},(prevProps, nextProps) => {
+  return (
+    prevProps.localGotten.localStatus === nextProps.localGotten.localStatus
+  );
+});

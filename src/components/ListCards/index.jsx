@@ -8,11 +8,7 @@ export const ListCards = ({children}) => {
   const WIDTH = context.widthScreen;
 
   useEffect(() => {
-    if(WIDTH<800){
-      context.setHeightFooter(context.HEIGHT_MOBILE);
-    }else{
-      context.setHeightFooter(context.HEIGHT_DESKTOP);
-    }
+    context.setHeightFooter(context.TOTAL_HEIGHT);
     window.addEventListener("resize",context.handleResize);
   },[window.innerWidth]);
 
@@ -24,6 +20,7 @@ export const ListCards = ({children}) => {
     ${(WIDTH>=525 && WIDTH<850) && "grid-cols-2"}
     ${(WIDTH>=850 && WIDTH<=1440) && "grid-cols-3"}
     ${(WIDTH>1440) && "grid-cols-4"}
+    w-full
     `}
     style={context.MAIN_CONTENT_HEIGHT}
     > 

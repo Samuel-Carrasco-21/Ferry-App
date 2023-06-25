@@ -4,7 +4,7 @@ const response = require('../../network/response');
 const router = express.Router();
 
 router.get('/',(req,res) => {
-  const filterUser = req.query.user_email || null;
+  const filterUser = req.query.userEmail || null;
   controller.getUsers(filterUser).then((gottenUsers) => {
     response.success(req,res,gottenUsers,200);
   }).catch(findedError => {
@@ -13,13 +13,11 @@ router.get('/',(req,res) => {
 });
 
 router.post('/',(req,res) => {
-  const user_name = req.body.user_name;
-  const user_email = req.body.user_email;
-  const user_password = req.body.user_password;
+  const {userName,userEmail,userPassword} = req.body;
 
-  controller.addUser({user_name,user_email,user_password})
+  controller.addUser({userName,userEmail,userPassword})
     .then((fullMessage) => {
-      response.success(req,res,fullMessage,201);
+      response.success(req,res,fullMessage,200);
     }).catch(findedError => {
       response.error(req,res,'Invalid Information',400,findedError);
     });

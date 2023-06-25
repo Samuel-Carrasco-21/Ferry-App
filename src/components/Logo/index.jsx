@@ -1,10 +1,13 @@
-import '../../App/App.css'
+export const Logo = ({urlImg,widthLogo}) => {
+  const width = widthLogo;
 
-export const Logo = ({urlImg}) => {
   return (
-    <figure className="w-28 m-5 rounded-2xl">
+    <figure className={`
+    ${width==="small" ? "w-16 h-max" : "w-48 h-48"} m-2 rounded-2xl"`}>
       <img src={urlImg}
-      className="App-logo rounded-2xl p-3 bg-black" alt="logo"/>
+      className={`rounded-2xl
+      ${width==="small" ? "w-16 h-max" : "w-48 h-48"}`}
+      alt="logo"/>
     </figure>
   );
 };

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export const ButtonsLoginPWDPage = () => {
   return (
-    <div className='mt-2 mb-2 flex flex-col'>
+    <div className='mt-2 mb-2 flex flex-col w-[95%]'>
       <ButtonType1
       textButton="ingresar"
       actionButton={()=>{}}

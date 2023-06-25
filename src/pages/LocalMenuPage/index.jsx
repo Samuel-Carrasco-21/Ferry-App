@@ -1,5 +1,5 @@
 import { AppContext } from '../../context/AppContext';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { ListCards } from '../../components/ListCards';
 import { LocalCard } from '../../components/LocalCard';
 
@@ -15,10 +15,13 @@ export const LocalMenuPage = () => {
         (
           <LocalCard
           localName = {local.localName}
-          localStatus = {local.localStatus ? "abierto" : "cerrado"}
+          localStatus = {local.localStatus}
           buttonTextOne = "Productos"
           buttonTextTwo = "Ubicacion"
-          key = {local.id}
+          localLogo = {local.localLogo}
+          _id = {local._id}
+          localGotten = {local}
+          key = {local._id}
           />
         )
       )}

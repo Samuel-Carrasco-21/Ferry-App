@@ -27,11 +27,13 @@ export const ProductCard = memo(({product,setProductChecked}) => {
     typeStatus={"product"}
     localStatus={productStatus}
     />
+    <div className="w-[90%]">
     <ButtonType1
     textButton='descripción'
     typeButton="button"
     actionButton={clickedButton}
     />
+    </div>
   </Card>
   );
 },(prevProps, nextProps) => {

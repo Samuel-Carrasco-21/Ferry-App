@@ -16,13 +16,14 @@ export const QuestionType2 = ({instruction}) => {
 
   const [eyeState,setEyeState] = useState(false);
 
+  const [onClick,setOnClick] = useState(false);
+
   useEffect(() => {
     if(pathname==="/login-sign-up"){
       if(placeHolder==="nombre"){
         const oneSmallLetter = /[a-z]/;
         const oneBigLetter = /[A-Z]/;
-        if(!questionValue ||
-          (!oneSmallLetter.test(questionValue) && !oneBigLetter.test(questionValue))){
+        if((!oneSmallLetter.test(questionValue) && !oneBigLetter.test(questionValue))){
           setFindedError(true);
           setTextError("* El nombre debe tener al menos 1 letra");
         }else{
@@ -59,8 +60,8 @@ export const QuestionType2 = ({instruction}) => {
           setFindedError(false);
         }
       }else{
-        if(!(context.INSTRUCTIONS[3].questionValue ===
-          context.INSTRUCTIONS[2].questionValue)){
+        if(context.INSTRUCTIONS[3].questionValue !==
+          context.INSTRUCTIONS[2].questionValue){
           setTextError("* Las contraseñas deben ser iguales");
           setFindedError(true);
         }else{

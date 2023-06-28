@@ -1,15 +1,10 @@
-import { GiHamburgerMenu } from 'react-icons/gi'
-// import { AiOutlineSearch } from 'react-icons/ai'
-import { FaReact } from 'react-icons/fa'
-import { useContext, useEffect, useRef, useState } from 'react'
-import { AppContext } from '../../context/AppContext'
-import { Logo } from '../Logo'
-import { useNavigate } from 'react-router-dom'
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { useContext, useEffect, useRef } from 'react';
+import { AppContext } from '../../context/AppContext';
+import { Logo } from '../Logo';
 export const HeaderMenu = ({clickBurgerButton,setClickBurgerButton}) => {
   
   const context = useContext(AppContext);
-  // context.headerMenuHeight
-  // context.setHeaderMenuHeight
 
   const headerMenuSize = useRef();
 
@@ -38,8 +33,8 @@ export const HeaderMenu = ({clickBurgerButton,setClickBurgerButton}) => {
         <GiHamburgerMenu />
       </button>
       
-      <input placeholder='search' className='w-4/5 rounded-lg p-2
-      outline-none shadow-lg'
+      <input placeholder='search' className='w-3/4 rounded-lg p-2
+      outline-none shadow-lg pl-5 pr-5 mr-3'
       onChange={searchValue}
       />
 

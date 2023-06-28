@@ -1,10 +1,6 @@
-import React, { useState } from "react";
+import React, { useState , useContext } from "react";
 import { AppContext } from "../../context/AppContext";
-import "./LoginSingUp.css";
-import "../LoginPWDPage/LoginPWD.css";
 import { FormularioType1 } from "../../components/Formulario/FormularioType1";
-import { QuestionType1 } from "../../components/Questions/QuestionType1";
-import { useContext } from "react";
 import { getUser, setUser } from "../../services/ferryServices";
 import { ModalPage } from "../ModalPage";
 import { ModalMessage } from "../ModalPage/ModalMessage";
@@ -111,7 +107,7 @@ export const LoginSignUpPage = () => {
               className="text-white h-12 w-36 rounded-lg mt-4 mb-4
                 font-bold bg-secondary-two hover:bg-secondary-three
                 active:bg-secondary-one self-center ease-in-out
-                duration-300 uppercase"
+                duration-300 uppercase text-xs"
               value="crear cuenta"
             />
             <Link to={"/login"}>

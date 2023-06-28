@@ -16,19 +16,20 @@ export const QuestionType2 = ({instruction}) => {
 
   const [eyeState,setEyeState] = useState(false);
 
+  const [onClick,setOnClick] = useState(false);
+
   useEffect(() => {
     if(pathname==="/login-sign-up"){
-      if(placeHolder==="nombre"){
+      if(placeHolder==="nombre" && onClick){
         const oneSmallLetter = /[a-z]/;
         const oneBigLetter = /[A-Z]/;
-        if(!questionValue ||
-          (!oneSmallLetter.test(questionValue) && !oneBigLetter.test(questionValue))){
+        if((!oneSmallLetter.test(questionValue) && !oneBigLetter.test(questionValue))){
           setFindedError(true);
           setTextError("* El nombre debe tener al menos 1 letra");
         }else{
           setFindedError(false);
         }
-      }else if(placeHolder==="email"){
+      }else if(placeHolder==="email" && onClick){
         const emailVerificator = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if(!emailVerificator.test(questionValue)){
           setFindedError(true);
@@ -36,7 +37,7 @@ export const QuestionType2 = ({instruction}) => {
         }else{
           setFindedError(false);
         }
-      }else if(textQuestion==="Escriba una contraseña"){
+      }else if(textQuestion==="Escriba una contraseña" && onClick){
         const passwordVerificator =
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z0-9]{8,}$/;
         const lengthPassword = /^.{8,}$/;
@@ -59,12 +60,14 @@ export const QuestionType2 = ({instruction}) => {
           setFindedError(false);
         }
       }else{
-        if(!(context.INSTRUCTIONS[3].questionValue ===
-          context.INSTRUCTIONS[2].questionValue)){
-          setTextError("* Las contraseñas deben ser iguales");
-          setFindedError(true);
-        }else{
-          setFindedError(false);
+        if(onClick){
+          if(context.INSTRUCTIONS[3].questionValue !==
+            context.INSTRUCTIONS[2].questionValue){
+            setTextError("* Las contraseñas deben ser iguales");
+            setFindedError(true);
+          }else{
+            setFindedError(false);
+          }
         }
       }
     }
@@ -92,7 +95,10 @@ export const QuestionType2 = ({instruction}) => {
         dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
         dark:text-white dark:focus:ring-blue-500
         dark:focus:border-blue-500"
-        placeholder={placeHolder} required/>
+        placeholder={placeHolder} required
+        onClickCapture={() => setOnClick(true)}
+        onAuxClickCapture={() => setOnClick(false)}
+        />
         {
           placeHolder==="contraseña" && (
             <button className="p-1 m-1 rounded-md shadow-lg

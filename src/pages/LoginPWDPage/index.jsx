@@ -1,5 +1,4 @@
 import { AppContext } from "../../context/AppContext";
-import "./LoginPWD.css";
 import { FormularioType1 } from "../../components/Formulario/FormularioType1";
 import { useContext, useState } from "react";
 import { TituloApp } from "../../components/TituloApp";

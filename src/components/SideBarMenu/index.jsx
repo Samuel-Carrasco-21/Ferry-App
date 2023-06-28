@@ -1,6 +1,6 @@
 import { AppContext } from '../../context/AppContext';
 import { useEffect,useContext } from "react";
-import { SelectZone } from '../SelectZone';
+import { SelectZone } from '../Select';
 import { Link, useLocation } from 'react-router-dom';
 import { LogOut } from '../LogOut';
 

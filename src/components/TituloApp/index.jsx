@@ -5,6 +5,7 @@ export const TituloApp = () => {
     text-gray-900
     text-4xl
     font-bold
+    mb-3
     "
     >
       Ferry App

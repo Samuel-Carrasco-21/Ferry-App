@@ -8,43 +8,131 @@ La forma de instalar satisfactoriamente esta aplicación, se da a través del si
 
 * Se debe instalar el Editor de código VSCode para el sistema operativo Windows. Para ello, se debe seguir los pasos especificados en [este enlace](https://www.youtube.com/watch?v=X_Z7d04x9-E).
 
-* Luego, se debe instalar NodeJS por medio de [este segundo enlace](https://www.youtube.com/watch?v=Z-Ofqd2yBCc). Ya que el mismo proporciona un tutorial para lograr instalar satisfactoriamente NodeJS en su computadora. sin embargo, en dicha guía se especifica que se debe de usar la versión 16.13.1 de NodeJS, y debido a ello, de debe instalar y usar la versión 18.16.1 del mismo.
+* Luego, se debe instalar NodeJS por medio de [este segundo enlace](https://www.youtube.com/watch?v=Z-Ofqd2yBCc). Ya que el mismo proporciona un tutorial para lograr instalar satisfactoriamente NodeJS en su computadora. sin embargo, en dicha guía se especifica que se debe de usar la versión 16.13.1 de NodeJS (o como lo coloca en el video, **lts**), y debido a ello, de debe instalar y usar la versión 18.16.1 del mismo. Esto resultaría en el siguiente comando, en lugar de ejecutar **nvm install lts**:
+
+  * nvm install 18.16.1
+ 
+* Además de ello, cabe mencionar que no se debe de instalar **yarn**.
 
 * Luego, se debe descargar el archivo comprimido. Para lograrlo, dar click en el botón <>code, para luego seleccionar la opción **Download ZIP**.
 
+<img width="263" alt="image" src="https://github.com/JZane21/Ferry-App/assets/82000556/f8bb3ec7-ef00-4a7c-bbd4-d56b8fd830c7">
+
 * Tras descargar el archivo.zip, se debe ir al directorio en donde se descargó. Al encontrarlo, se debe mover el archivo a una carpeta aparte. Luego, se lo debe descomprimir.
 
-* Abrir la carpeta donde se encuentra el proyecto utilizando VSCode por medio de las opciones ofrecidas al dar **click derecho**.
+<img width="675" alt="image" src="https://github.com/JZane21/Ferry-App/assets/82000556/d231cee2-2f96-470e-b4b7-086e6c8e6da7">
 
-* Luego de dar **aceptar** cuando pregunta si confía en la distribución de este proyecto, debe abrir una terminal, utilizando una de las opciones que se encuentra en la parte superior de VSCode.
+<img width="661" alt="image" src="https://github.com/JZane21/Ferry-App/assets/82000556/90754417-fc7a-4932-9856-27873a376bde">
 
-* Una vez abierta la terminal, se debe copiar y ejecutar (pulsando enter) los siguientes comandos:
+* Dar doble click sobre la carpeta **Ferry-App-main**. Luego, dar click derecho sobre la carpeta, y seleccionar, **abrir con Code**.
+
+<img width="691" alt="Screenshot 2023-06-30 142544" src="https://github.com/JZane21/Ferry-App/assets/82000556/fde4e4f1-f3ce-4dde-acb8-0db1de2dd028">
+
+* Luego de dar **Si, Yo confío en los autores** (o en inglés: **Yes, I trust the authors**) cuando pregunta si confía en la distribución de este proyecto, debe abrir una terminal, utilizando una de las opciones que se encuentra en la parte superior de VSCode.
+
+<img width="347" alt="image" src="https://github.com/JZane21/Ferry-App/assets/82000556/d9982dac-69a1-40ca-9898-95f335243bc7">
+
+* Una vez abierta la terminal, se debe copiar y ejecutar (pulsando enter) los siguientes comandos uno por uno (en el proceso puede usar el comando **clear** para limpiar la pantalla. Repetir este comando una o varias veces no influirá en la instalación):
 
   * npm install
 
+<img width="526" alt="image" src="https://github.com/JZane21/Ferry-App/assets/82000556/11da454f-489d-4937-ae95-2b126be65449">
+
   * cd backend
+
+<img width="509" alt="image" src="https://github.com/JZane21/Ferry-App/assets/82000556/48c97609-5fca-446c-95d4-e315f554f017">
+ 
+  * npm install
+
+<img width="556" alt="image" src="https://github.com/JZane21/Ferry-App/assets/82000556/2b45dbc9-d240-48f5-a8c0-4cb7ef1093ab">
 
   * npm install express
 
+<img width="604" alt="image" src="https://github.com/JZane21/Ferry-App/assets/82000556/d36f55d0-cd5e-4974-bc85-15653dfbffbf">
+
   * npm install mongoose
+
+<img width="610" alt="image" src="https://github.com/JZane21/Ferry-App/assets/82000556/4de5662d-bfba-4f6d-9171-2863544253dd">
   
   * npm install mongodb
+
+<img width="597" alt="image" src="https://github.com/JZane21/Ferry-App/assets/82000556/5ed397dc-7dfe-43c5-aad4-978ba414855e">
   
   * npm install -g nodemon
-  
-  * nodemon index.js (dar control C e intentar nuevamente si llega a aparecer un error, repetir este proceso hasta que aparezca el siguiente mensaje: **[db] DB conectada con éxito**)
- 
-* Reescribir el nombre del archivo **.env.sample** por **.env**
 
-* Abrir una nueva terminal
+<img width="615" alt="image" src="https://github.com/JZane21/Ferry-App/assets/82000556/23846eb3-3f0f-412f-98e0-c429df731ad0">
+  
+  * nodemon index.js
+
+<img width="581" alt="image" src="https://github.com/JZane21/Ferry-App/assets/82000556/1030a3a6-a67f-4e3c-b5d0-dd5b60f63ff9">
+
+----------------------
+  
+  * **(NOTA)** En caso de que le aparezca el siguiente error:
+
+<img width="715" alt="image" src="https://github.com/JZane21/Ferry-App/assets/82000556/f9876e91-c993-44fc-a48a-ebb65f5adaf8">
+
+  * Debe abrir una terminal PowerShell como administrador.
+
+  * Luego, debe ejecutar el siguiente comando:
+
+    * Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+    * Se le mostrará opciones para seleccionar, solo debe dar **Y** y luego enter (Cuando deje de usar Ferry App, vuelva a ejecutar el anterior comando en una terminal PowerShell como administrados, y use la opción **N**)
+   
+<img width="697" alt="image" src="https://github.com/JZane21/Ferry-App/assets/82000556/5c8bd449-3bb0-400d-8b84-b46220eb65a4">
+
+  * Cerrar la terminal con modo administrador PowerShell
+
+-----------------------
+
+* (En caso de que se le mostrara otro error (por tiempo excedido para conectarse a la Base de Datos) debe ejecutar **ctrl+c** e intentar nuevamente el comando **nodemon index.js**. Si vuelve a aparecer el mismo error marcado en rojo, repetir este proceso hasta que aparezca el siguiente mensaje: **[db] DB conectada con éxito**)
+
+-----------------------
+
+* Si le llega a aparecer:
+
+<img width="599" alt="image" src="https://github.com/JZane21/Ferry-App/assets/82000556/ca69eaba-6a01-4877-b2b2-0ac122cb8c94">
+
+* Usted debe darle a cancel.
+
+-----------------------
+
+* Reescribir el nombre del archivo **.env.sample** por **.env**.
+
+<img width="110" alt="image" src="https://github.com/JZane21/Ferry-App/assets/82000556/83d7d000-ca92-496c-b2ca-11d1e486a11a">
+
+<img width="107" alt="image" src="https://github.com/JZane21/Ferry-App/assets/82000556/bd00bc40-c0b6-4973-bde7-03731f4360a2">
+
+* Abrir una nueva terminal.
 
 * Ejecutar el comando:
 
   * npm run dev
+ 
+<img width="501" alt="image" src="https://github.com/JZane21/Ferry-App/assets/82000556/49529b53-0751-4a15-987d-61648c9be5a9">
+
+<img width="263" alt="image" src="https://github.com/JZane21/Ferry-App/assets/82000556/eefd2eb0-20b5-4b13-bdb1-edb7694f570a">
 
 Al finalizar, se debe seguir [este enlace](http://localhost:5173/), para acceder a la aplicación, ¡y listo!
 
-* Para apagar la aplicación, se deben ejecutar **ctrl + c** en ambas terminales.
+<img width="959" alt="image" src="https://github.com/JZane21/Ferry-App/assets/82000556/5c3f3065-664c-41ef-b6e7-42e4c8163b33">
+
+* Para apagar la aplicación, se hacer click en el rectángulo que aparece al final del texto que sobre sale en las terminales, y luego se debe ejecutar **ctrl + c** en ambas terminales. Y ya puede cerrar Visual Studio Code junto con la página web.
+
+<img width="459" alt="image" src="https://github.com/JZane21/Ferry-App/assets/82000556/c11be33c-a3de-409f-ab7c-db546d205623">
+
+<img width="497" alt="image" src="https://github.com/JZane21/Ferry-App/assets/82000556/ff8f6111-e79f-4ed3-8454-494cb4ef707c">
+
+* Si desea usar la app nuevamente, deberá abrir el proyecto nuevamente con Visual Studio Code, y realizar los siguientes pasos:
+
+  * Abrir 2 terminales
+ 
+  * Solo en una de las terminales ejecutar: **npm run dev**
+ 
+  * En la otra terminal, se debe ejecutar:
+    * **cd backend**
+    * **nodemon index.js**
 
 ## Manual de usuario
 

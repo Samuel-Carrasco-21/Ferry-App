@@ -48,56 +48,56 @@ Al finalizar, se debe seguir [este enlace](http://localhost:5173/), para acceder
 
 * Al iniciarse, la app lo redirigirá a Login, donde debe de estar registrado para ingresar a la aplicación por medio del botón "Login". En caso de no estarlo, debe pulsar el botón "Sign Up" para registrarse en la app.
 
-![Login](image.png)
+![Login](./README_images/image.png)
 
 * Si seleccionó el botón Login, usted debe llenar sus datos respectivamente (específicamente hablando de su correo electrónico junto con su contraseña). Si lo llenó correctamente, le aparecerá un mensaje de que pudo ingresar correctamente a la app. En caso de que alguno de los datos fuera erroneo, se le indicará con otro mensaje que cometió un error.
 
-![Login PWD](image-1.png)
+![Login PWD](./README_images/image-1.png)
 
 * En caso de haber seleccionado el botón Sign Up, usted deberá de llenar el siguiente formulario correctamente, para lograr registrarse en la aplicación. Si llenó los campos correctamente, le aparecerá un mensaje, el cual le indicará que se registró correctamente, para luego llevarlo a la página anterior. Pero en caso de que algún dato fuese llenado incorrectamente, se le notificará con otro mensaje que campo debe llenarse correctamente.
 
-![Login Sign Up](image-2.png)
+![Login Sign Up](./README_images/image-2.png)
 
 * Cuando logra ingresar a la aplicación, se le aparecerá un menu, el cual tiene a todas las tiendas/locales que se encuentren registrados en la aplicación. Entre las opciones que tiene esta página se encuentran las siguientes:
 
-  ![Menu Locals](image-8.png)
+  ![Menu Locals](./README_images/image-8.png)
 
   * Pulsando el botón superior izquierdo, se abrirá una barra de navegación por el mismo lado, el cual mostrará tanto la posibilidad de salir de la aplicación, como la posibilidad de filtrar las tiendas ya sea por su *estado* (abierto o cerrado) o por la *cantidad* de productos que tenga.
 
-  ![Button Bar](image-3.png)
+  ![Button Bar](./README_images/image-3.png)
 
-  ![Side Bar](image-7.png)
+  ![Side Bar](./README_images/image-7.png)
 
   * Con el buscador, tendrá la capacidad de buscar el local de su interés.
 
-  ![Searcher](image-4.png)
+  ![Searcher](./README_images/image-4.png)
  
   * En caso de que desee ingresar a un local para ver sus productos, debe de usar el botón **Productos**.
 
-  ![Buttton Products](image-5.png)
+  ![Buttton Products](./README_images/image-5.png)
 
   * Por el contrario, si desea obtener la ubicación sobre donde se encuentra dicha tienda en la ciudad, deberá pulsar el botón **Ubicación**.
 
-  ![Button Location](image-5.png)
+  ![Button Location](./README_images/image-5.png)
 
   * Utilizando el botón **Acerca de Nosotros**, podrá ver una pequeña descripción del objetivo de esta aplicación por medio de un mensaje, para luego tener la posibilidad de cerrarla.
 
-  ![About Us](image-6.png)
+  ![About Us](./README_images/image-6.png)
 
   * Si pulsa el botón **Contactos**, deberá de aparecer la información del desarrollador de esta aplicación por medio de un mensaje, para luego tener la posibilidad de cerrarla.
 
-  ![Contacts](image-6.png)
+  ![Contacts](./README_images/image-6.png)
 
 * Si ingresó a una tienda, se le ofrecerá opciones parecidas con la anterior página (como lo es la posibilidad de usar el botón **Acerca de nosotros**, **Contactos** y el **buscador**), sin embargo, algunas de ellas varían, tales como:
 
-  ![Menu Products](image-9.png)
+  ![Menu Products](./README_images/image-9.png)
 
   * Al abrir la opción de desplegar la barra de navegación izquierda, todavía se ofrecerá salir de la aplicación. Sin embargo, la posibilidad de filtrar los productos de la tienda será por *cantidad*, *precio* y *disponibilidad*.
 
-  ![Nav Bar Products](image-10.png)
+  ![Nav Bar Products](./README_images/image-10.png)
 
   * También se ofrecerá la posibilidad de leer una descripción del producto, la cual se mostrará por medio de un mensaje si se pulsa el botón **Descripción**
 
-  ![Description](image-11.png)
+  ![Description](./README_images/image-11.png)
 
 Estas serían todas las funcionalidades que ofrecería la aplicación. Esperamos de que este manual de usuario le haya sido de mucha ayuda.

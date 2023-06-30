@@ -1,6 +1,6 @@
 import { AppContext } from '../../context/AppContext';
 import { useEffect,useContext } from "react";
-import { SelectZone } from '../Select';
+import { SelectLocals } from '../Select';
 import { Link, useLocation } from 'react-router-dom';
 import { LogOut } from '../LogOut';
 
@@ -35,7 +35,7 @@ export const SideBarMenu = ({clickBurgerButton,typeBar}) => {
           {pathname==="/principal-menu/local-list-menu" ?
           "Locales" : "Productos"}
         </h1>
-        <SelectZone typeBar={typeBar}/>
+        <SelectLocals typeBar={typeBar}/>
         {
           pathname!=="/principal-menu/local-list-menu" && (
             <Link className='w-56 h-14 hover:bg-secondary-three

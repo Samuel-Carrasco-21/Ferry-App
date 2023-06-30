@@ -2,7 +2,7 @@ import { useContext, useMemo } from 'react';
 import Select from 'react-select';
 import { AppContext } from '../../context/AppContext';
 
-export const SelectZone = ({typeBar}) => {
+export const SelectLocals = ({typeBar}) => {
 
   const context = useContext(AppContext);
 

@@ -33,6 +33,8 @@ La forma de instalar satisfactoriamente esta aplicación, se da a través del si
   * npm install -g nodemon
   
   * nodemon index.js (dar control C e intentar nuevamente si llega a aparecer un error, repetir este proceso hasta que aparezca el siguiente mensaje: **[db] DB conectada con éxito**)
+ 
+* Reescribir el nombre del archivo **.env.sample** por **.env**
 
 * Abrir una nueva terminal
 

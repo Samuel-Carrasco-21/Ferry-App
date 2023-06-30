@@ -18,7 +18,7 @@ export const Contactos = ({action}) => {
   return (
     <section className="bg-white rounded-lg p-4 m-2 font-semibold
     flex flex-col justify-center items-center w-max h-max">
-      <h1 className="text-2xl uppercase mb-5">
+      <h1 className="text-2xl uppercase mb-5 text-center">
         Contactos
       </h1>
       {

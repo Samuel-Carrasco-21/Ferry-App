@@ -1,5 +1,5 @@
 import { AppContext } from '../../context/AppContext';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { ListCards } from '../../components/ListCards';
 import { LocalCard } from '../../components/LocalCard';
 
